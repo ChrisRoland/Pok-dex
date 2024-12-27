@@ -12,10 +12,25 @@
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="styles.css" />
-    <title>Document</title>
+    <title>Pokédex</title>
   </head>
   <body>
-    <h1 class="">Projects</h1>
+    <header>
+      <h1>Pokédex</h1>
+    </header>
+    
+    <div class="container">
+      <div class="search-container">
+        <input
+          type="text"
+          id="search"
+          placeholder="Search Pokémon"
+          onkeyup="searchPokemon()"
+        />
+      </div>
+      <div class="cards-container" id="cards-container"></div>
+    </div>
+    <div class="modal-container" id="modal-container"></div>
 
     <script src="script.js"></script>
   </body>
