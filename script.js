@@ -6,7 +6,7 @@ const prev = document.getElementById('prev');
 const next = document.getElementById('next');
 
 let currentPage = 1;
-const itemsPerPage = 20;
+const itemsPerPage = 200;
 const totalPages = Math.ceil(1302 / itemsPerPage); 
 
 const colors = {
@@ -62,6 +62,10 @@ function createPokemonCard(pokemon) {
             <span class="number">#${id}</span>
             <h3 class="name">${name}</h3>
             <small>Type: <span class="type">${type}</span></small>
+            <p>
+                <small class="abilities"><span>Abilities:</span> ${pokemon.abilities.map(ability => ability.ability.name).join(', ')}</small><br>
+                <small class="moves"><span>Moves:</span> ${pokemon.moves.slice(0, 6).map(move => move.move.name).join(', ')}</small>
+            </p>
         </div>
     `;
     pokeEl.innerHTML = pokemonInnerHTML;
