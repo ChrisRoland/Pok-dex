@@ -15,8 +15,8 @@
     <title>Pokédex</title>
   </head>
   <body>
-      <h1>Pokédex</h1>
-    `
+    <h1>Pokédex</h1>
+    <div class="search-filter">
       <div class="search-container">
         <input
           type="text"
@@ -25,43 +25,34 @@
           onkeyup="searchPokemon()"
         />
       </div>
-    <div class="container" id="container">
-      <div class="pokemon" id="pokemon" style="background-color: rgb(222, 253, 224);">
-        <div class="img-container">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png" alt="">
-        </div>
-        <div class="info">
-          <span class="number">OO1</span>
-          <h3 class="name">Bulbasaur</h3>
-          <small class="type">Type: <span>Grass</span></small>
-
-        </div>
-      </div>
-      <div class="pokemon" id="pokemon" style="background-color: rgb(222, 253, 224);">
-        <div class="img-container">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png" alt="">
-        </div>
-        <div class="info">
-          <span class="number">OO1</span>
-          <h3 class="name">Bulbasaur</h3>
-          <small class="type">Type: <span>Grass</span></small>
-
-        </div>
-      </div>
-      <div class="pokemon" id="pokemon" style="background-color: rgb(222, 253, 224);">
-        <div class="img-container">
-          <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png" alt="">
-        </div>
-        <div class="info">
-          <span class="number">OO1</span>
-          <h3 class="name">Bulbasaur</h3>
-          <small class="type">Type: <span>Grass</span></small>
-
-        </div>
+      <div class="filter-container">
+        <select id="filter" onchange="filterPokemon()">
+          <option value="">Filter by Type</option>
+          <option value="normal">Normal</option>
+          <option value="fire">Fire</option>
+          <option value="water">Water</option>
+          <option value="electric">Electric</option>
+          <option value="grass">Grass</option>
+          <option value="ice">Ice</option>
+          <option value="fighting">Fighting</option>
+          <option value="poison">Poison</option>
+          <option value="ground">Ground</option>
+          <option value="flying">Flying</option>
+          <option value="psychic">Psychic</option>
+          <option value="bug">Bug</option>
+          <option value="rock">Rock</option>
+          <option value="ghost">Ghost</option>
+          <option value="dragon">Dragon</option>
+          <option value="dark">Dark</option>
+          <option value="steel">Steel</option>
+          <option value="fairy">Fairy</option>
+        </select>
       </div>
     </div>
-    <div class="modal-container" id="modal-container"></div>
+    <button onclick="fetchPokemons()">Fetch Pokémon</button>
 
-    <script src="script.js"></script> 
+    <div class="container" id="container"></div>
+
+    <script src="script.js"></script>
   </body>
 </html>
