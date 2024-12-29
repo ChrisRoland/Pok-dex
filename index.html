@@ -10,24 +10,18 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="styles.css" />
     <title>Pokédex</title>
   </head>
   <body>
-    <h1><span class="pokéball"><img src="media/pngwing.com.png" alt="pokéball"></span> Pokédex <span class="pokéball"><img src="/media/pngwing.com.png" alt="pokéball"></span></h1>
+    <h1><span class="pokéball"><img src="media/pngwing.com.png" alt="pokéball"></span> Pokédex <span class="pokéball"><img src="media/pngwing.com.png" alt="pokéball"></span></h1>
     <div class="search-filter">
       <div class="search-container">
-        <input
-          type="text"
-          id="search"
-          placeholder="Search Pokémon"
-          onkeyup="searchPokemons()"
-        />
+        <input type="text" id="search" placeholder="Search Pokémon" />
       </div>
       <div class="filter-container">
-        <select id="filter" onchange="filterPokemon()">
-          <option value="">Filter by Type</option>
+        <select id="filter">
+          <option value="all">Filter by Type</option>
           <option value="normal">Normal</option>
           <option value="fire">Fire</option>
           <option value="water">Water</option>
@@ -49,9 +43,13 @@
         </select>
       </div>
     </div>
-    <button onclick="fetchPokemons()">Show Pokémon</button>
 
     <div class="container" id="container"></div>
+
+    <div class="pagination">
+      <button id="prev"><i class="fas fa-less-than"></i> Previous</button>
+      <button id="next">Next <i class="fas fa-greater-than"></i></button>
+    </div>
 
     <script src="script.js"></script>
   </body>

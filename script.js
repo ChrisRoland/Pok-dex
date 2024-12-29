@@ -2,8 +2,13 @@ const baseURL = 'https://pokeapi.co/api/v2/pokemon/';
 const container = document.querySelector('.container');
 const search = document.getElementById('search');
 const filter = document.getElementById('filter');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
 
-const pokemons = 200;
+let currentPage = 1;
+const itemsPerPage = 20;
+const totalPages = Math.ceil(1302 / itemsPerPage); 
+
 const colors = {
     fire: '#f9c0b7',
     grass: '#DEFDE0',
@@ -19,21 +24,25 @@ const colors = {
     flying: '#F5F5F5',
     fighting: '#E6E0D4',
     normal: '#F5F5F5'
-}
+};
 
-const fetchPokemons = async () => {
-    for (let i = 1; i <= pokemons; i++) {
-        await getPokemon(i);
-    }
-}
-
-const getPokemon = async (id) => {
-    const url = `${baseURL}${id}`;
+const fetchPokemons = async (page) => {
+    container.innerHTML = '';
+    const offset = (page - 1) * itemsPerPage;
+    const url = `${baseURL}?offset=${offset}&limit=${itemsPerPage}`;
     const res = await fetch(url);
     const data = await res.json();
-    createPokemonCard(data);
-    // console.log(data);
-}
+    data.results.forEach(async (pokemon) => {
+        const pokeData = await fetchPokemonData(pokemon.url);
+        createPokemonCard(pokeData);
+    });
+};
+
+const fetchPokemonData = async (url) => {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data;
+};
 
 function createPokemonCard(pokemon) {
     const pokeEl = document.createElement('div');
@@ -44,6 +53,7 @@ function createPokemonCard(pokemon) {
     const type = mainType(poke_types);
     const color = colors[type];
     pokeEl.style.backgroundColor = color;
+
     const pokemonInnerHTML = `
         <div class="img-container">
             <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png" alt="${name}">
@@ -52,54 +62,47 @@ function createPokemonCard(pokemon) {
             <span class="number">#${id}</span>
             <h3 class="name">${name}</h3>
             <small>Type: <span class="type">${type}</span></small>
-            <p>
-                <small class="abilities"><span>Abilities:</span> ${pokemon.abilities.map(ability => ability.ability.name).join(', ')}</small><br>
-                <small class="moves"><span>Moves:</span> ${pokemon.moves.slice(0, 6).map(move => move.move.name).join(', ')}</small>
-            </p>
         </div>
     `;
-
     pokeEl.innerHTML = pokemonInnerHTML;
     container.appendChild(pokeEl);
 }
 
 function mainType(types) {
-    const type = types.find(type => type === 'grass' || type === 'fire' || type === 'water' || type === 'electric' || type === 'ground' || type === 'rock' || type === 'fairy' || type === 'poison' || type === 'bug' || type === 'dragon' || type === 'psychic' || type === 'flying' || type === 'fighting' || type === 'normal');
-    return type;
+    const type = types.find(type => Object.keys(colors).includes(type));
+    return type || 'normal';
 }
 
-search.addEventListener('input', searchPokemons);
-
-function searchPokemons(e) {
-    const term = e.target.value;
+search.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
     const pokemons = document.querySelectorAll('.pokemon');
     pokemons.forEach(pokemon => {
-        const name = pokemon.querySelector('.name').innerText;
-        if (name.includes(term)) {
-            pokemon.style.display = '';
-        } else {
-            pokemon.style.display = 'none';
-        }
+        const name = pokemon.querySelector('.name').innerText.toLowerCase();
+        pokemon.style.display = name.includes(term) ? '' : 'none';
     });
-}
+});
 
-filter.addEventListener('change', filterPokemons);
-
-function filterPokemons(e) {
+filter.addEventListener('change', (e) => {
     const type = e.target.value;
     const pokemons = document.querySelectorAll('.pokemon');
     pokemons.forEach(pokemon => {
         const pokemonType = pokemon.querySelector('.type').innerText;
-        if (type === 'all') {
-            pokemon.style.display = '';
-        } else {
-            if (pokemonType === type) {
-                pokemon.style.display = '';
-            } else {
-                pokemon.style.display = 'none';
-            }
-        }
+        pokemon.style.display = (type === 'all' || pokemonType === type) ? '' : 'none';
     });
-}
+});
 
-// fetchPokemons();
+prev.addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        fetchPokemons(currentPage);
+    }
+});
+
+next.addEventListener('click', () => {
+    if (currentPage < totalPages) {
+        currentPage++;
+        fetchPokemons(currentPage);
+    }
+});
+
+fetchPokemons(currentPage);

@@ -73,7 +73,9 @@ h1 .pokéball img {
 }
 
 button {
-    padding: 10px 20px;
+    width: 120px;
+    margin-bottom: 1rem;
+    padding: 5px 20px;
     border: none;
     border-radius: 5px;
     background: url('media/fire-bg.png') no-repeat center center; 
@@ -86,7 +88,6 @@ button {
 }
 
 button:hover {
-    letter-spacing: 1px;
     transform: scale(1.05);
 }
   
@@ -96,7 +97,7 @@ button:hover {
     justify-content: center;
     align-items: space-between;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 1rem auto;
 }
 
 .pokemon {
