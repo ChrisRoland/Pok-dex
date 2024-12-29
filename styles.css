@@ -46,9 +46,9 @@ h1 .pokéball img {
 }
 
 .search-filter input {
-    padding: 10px;
+    padding: 5px 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 1rem;
     font-family: inherit;
     text-transform: capitalize;
@@ -60,7 +60,7 @@ h1 .pokéball img {
 }
 
 .filter-container select {
-    padding: 10px;
+    padding: 4px;
     border: none;
     border-radius: 5px;
     font-size: 1rem;
@@ -81,7 +81,7 @@ button {
     font-family: inherit;
     color: #f7e7cb;
     font-size: 1rem;
-    cursor: pointer;
+    cursor: url('https://cur.cursors-4u.net/games/gam-13/gam1309.png'), auto;
     transition: all 0.3s ease-in-out;
 }
 
@@ -107,12 +107,12 @@ button:hover {
     align-items: center;
     background-color: #eee;
     border-radius: 10px;
-    min-width: 220px;
     margin: 10px;
     padding: 20px;
     text-align: center;
     line-height: 1.5rem;
     box-shadow: 0 3px 15px #64646480;
+    cursor: url('https://cur.cursors-4u.net/games/gam-13/gam1309.png'), auto;
 }
 
 .pokemon .img-container {
