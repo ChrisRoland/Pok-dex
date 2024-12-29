@@ -83,6 +83,23 @@ function searchPokemons(e) {
     });
 }
 
+filter.addEventListener('change', filterPokemons);
 
+function filterPokemons(e) {
+    const type = e.target.value;
+    const pokemons = document.querySelectorAll('.pokemon');
+    pokemons.forEach(pokemon => {
+        const pokemonType = pokemon.querySelector('.type').innerText;
+        if (type === 'all') {
+            pokemon.style.display = '';
+        } else {
+            if (pokemonType === type) {
+                pokemon.style.display = '';
+            } else {
+                pokemon.style.display = 'none';
+            }
+        }
+    });
+}
 
 // fetchPokemons();
