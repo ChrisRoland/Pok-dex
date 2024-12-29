@@ -5,14 +5,14 @@ const filter = document.getElementById('filter');
 
 const pokemons = 200;
 const colors = {
-    fire: '#FDDFDF',
+    fire: '#f9c0b7',
     grass: '#DEFDE0',
     electric: '#FCF7DE',
     water: '#DEF3FD',
     ground: '#f4e7da',
     rock: '#d5d5d4',
     fairy: '#fceaff',
-    poison: '#98d7a5',
+    poison: '#c8a3d5',
     bug: '#f8d5a3',
     dragon: '#97b3e6',
     psychic: '#eaeda1',
@@ -51,11 +51,14 @@ function createPokemonCard(pokemon) {
         <div class="info">
             <span class="number">#${id}</span>
             <h3 class="name">${name}</h3>
-            <small class="type">Type: <span>${type}</span></small> <br>
-            <small class="abilities">Abilities: ${pokemon.abilities.map(ability => ability.ability.name).join(', ')}</small>
-            <p>Move: ${pokemon.moves.slice(0, 6).map(move => move.move.name).join(', ')}</p>
+            <small>Type: <span class="type">${type}</span></small>
+            <p>
+                <small class="abilities"><span>Abilities:</span> ${pokemon.abilities.map(ability => ability.ability.name).join(', ')}</small><br>
+                <small class="moves"><span>Moves:</span> ${pokemon.moves.slice(0, 6).map(move => move.move.name).join(', ')}</small>
+            </p>
         </div>
     `;
+
     pokeEl.innerHTML = pokemonInnerHTML;
     container.appendChild(pokeEl);
 }
@@ -65,19 +68,21 @@ function mainType(types) {
     return type;
 }
 
-search.addEventListener('input', filterPokemons);
+search.addEventListener('input', searchPokemons);
 
-function filterPokemons(e) {
+function searchPokemons(e) {
     const term = e.target.value;
     const pokemons = document.querySelectorAll('.pokemon');
     pokemons.forEach(pokemon => {
         const name = pokemon.querySelector('.name').innerText;
         if (name.includes(term)) {
-            pokemon.style.display = 'block';
+            pokemon.style.display = '';
         } else {
             pokemon.style.display = 'none';
         }
     });
 }
+
+
 
 // fetchPokemons();

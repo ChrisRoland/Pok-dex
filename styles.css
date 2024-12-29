@@ -8,7 +8,7 @@
 
 body {
     background: #efefbb;
-    background: linear-gradient(to right, #d4d3dd, #efefbb);
+    background: linear-gradient(to right, #eeedf6, #d1d1ce, #f8dddd);
     font-family: "Lato", sans-serif;
     display: flex;
     flex-direction: column;
@@ -16,10 +16,27 @@ body {
     align-items: center;
 }
 
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('media/International_Pokémon_logo.svg') no-repeat center center; 
+    background-size: 90%;
+    opacity: 0.1;
+    z-index: -1;
+}
+
 h1 {
     font-size: 3rem;
     letter-spacing: 3px;
     margin-bottom: 20px;
+}
+
+h1 .pokéball img {
+    width: 30px;
 }
 
 .search-filter {
@@ -34,11 +51,12 @@ h1 {
     border-radius: 5px;
     font-size: 1rem;
     font-family: inherit;
+    text-transform: capitalize;
 }
 
 .search-filter input:focus {
     outline: none;
-    background-color: #ffffff99;
+    background-color: #fbf4e899;
 }
 
 .filter-container select {
@@ -58,15 +76,18 @@ button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
+    background: url('media/fire-bg.png') no-repeat center center; 
+    background-size: cover; 
     font-family: inherit;
+    color: #f7e7cb;
     font-size: 1rem;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
 }
 
 button:hover {
-    background-color: #0056b3;
+    letter-spacing: 1px;
+    transform: scale(1.05);
 }
   
 .container {
@@ -79,6 +100,7 @@ button:hover {
 }
 
 .pokemon {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -121,6 +143,26 @@ button:hover {
     margin: 15px 0 7px;
 }
 
-.pokemon .info .abilities {
+.pokemon .info p {
+    background-color: #ffffffee;
+    position: absolute;
+    border-radius: 0 0 10px 10px;
+    padding: 2rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 100%;
+    text-align: left;
+    opacity: 0;
+    transform: translateY(101%);
+    transition: all 0.5s ease-in-out;
+}
+
+.pokemon:hover .info p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pokemon .info p span {
     font-weight: 600;
 }

@@ -15,14 +15,14 @@
     <title>Pokédex</title>
   </head>
   <body>
-    <h1>Pokédex</h1>
+    <h1><span class="pokéball"><img src="media/pngwing.com.png" alt="pokéball"></span> Pokédex <span class="pokéball"><img src="/media/pngwing.com.png" alt="pokéball"></span></h1>
     <div class="search-filter">
       <div class="search-container">
         <input
           type="text"
           id="search"
           placeholder="Search Pokémon"
-          onkeyup="searchPokemon()"
+          onkeyup="searchPokemons()"
         />
       </div>
       <div class="filter-container">
@@ -49,7 +49,7 @@
         </select>
       </div>
     </div>
-    <button onclick="fetchPokemons()">Fetch Pokémon</button>
+    <button onclick="fetchPokemons()">Show Pokémon</button>
 
     <div class="container" id="container"></div>
 
