@@ -15,7 +15,15 @@
     <title>Pokédex</title>
   </head>
   <body>
-    <h1><span class="pokéball"><img src="media/pngwing.com.png" alt="pokéball"></span> Pokédex <span class="pokéball"><img src="media/pngwing.com.png" alt="pokéball"></span></h1>
+    <h1>
+      <span class="pokéball"
+        ><img src="media/pngwing.com.png" alt="pokéball"
+      /></span>
+      Pokédex
+      <span class="pokéball"
+        ><img src="media/pngwing.com.png" alt="pokéball"
+      /></span>
+    </h1>
     <div class="search-filter">
       <div class="search-container">
         <input type="text" id="search" placeholder="Search Pokémon" />
@@ -48,8 +56,11 @@
     <div class="container" id="container"></div>
 
     <div class="pagination">
-      <button id="prev"><i class="fas fa-less-than"></i> Previous</button>
+      <button id="firstPage"><i class="fas fa-backward"></i></button>
+      <button id="prev"><i class="fas fa-less-than"></i> Prev</button>
+      <span id="currentPage">Page 1 of 7</span>
       <button id="next">Next <i class="fas fa-greater-than"></i></button>
+      <button id="lastPage"><i class="fas fa-forward"></i></button>
     </div>
 
     <script src="script.js"></script>

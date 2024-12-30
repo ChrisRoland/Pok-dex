@@ -152,20 +152,47 @@ h1 .pokéball img {
 }
 
 button {
-    width: 120px;
-    padding: 5px 20px;
+    position: relative;
+    width: 100px;
+    padding: 5px 10px;
     margin-bottom: 1rem;
-    border: none;
+    border: 1px solid #1e1e1d;
     border-radius: 5px;
-    background: url('media/fire-bg.png') no-repeat center center; 
-    background-size: cover; 
+    background: url('media/International_Pokémon_logo.svg') no-repeat center center; 
+    backdrop-filter: blur(1px);
+    background-size: contain;
     font-family: inherit;
-    color: #f7e7cb;
+    color: #fbfbfb;
     font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 0px 10px 15px #00000080;
     cursor: url('https://cur.cursors-4u.net/games/gam-13/gam1309.png'), auto;
     transition: all 0.3s ease-in-out;
+    box-shadow: 0 3px 15px #64646480;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background: rgba(255, 0, 0, 0.728);
+    opacity: 0.8;
+    z-index: -1;
 }
 
 button:hover {
     transform: scale(1.05);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#currentPage {
+    margin: 1rem;
 }
