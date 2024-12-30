@@ -28,3 +28,9 @@ cd pokedex
 Open `index.html` in your browser to start the application.
 
 - Or check out the live [demo](https://chrisroland.github.io/Pokedex/)
+
+Feel free to open any issues your encounter, or create pull requests for any features you think you can add.
+
+This is open-sourced and I am open to constructive feedback and contributions!
+
+Thanks! ❤️
